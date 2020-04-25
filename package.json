@@ -1,0 +1,27 @@
+{
+  "name": "discord-hack-bot",
+  "version": "1.0.0",
+  "description": "Discord bot for Russian Hackers",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kondr1/discord-hack-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kondr1/discord-hack-bot/issues"
+  },
+  "homepage": "https://github.com/kondr1/discord-hack-bot#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "mongodb": "^3.5.6"
+  },
+  "devDependencies": {
+    "standard": "^14.3.3"
+  }
+}
