@@ -117,4 +117,4 @@ async function init () {
   client.login(process.env.DISCORD_TOKEN)
 }
 
-module.export = init
+module.exports = init
