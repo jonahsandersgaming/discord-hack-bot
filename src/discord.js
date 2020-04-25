@@ -96,16 +96,16 @@ client.on('guildMemberAdd', async member => {
   //   }
   const user = mongo().getUserByDiscord(member.user.username)
   const roles = []
-  if (!user.admin && !user.mentor) {
+  if (user || (!user.admin && !user.mentor)) {
     roles.push(await createRoleIfNotExist(memberRole, member)) // роль учасника
   }
-  if (user.teamCode) {
+  if (user && user.teamCode) {
     // TODO: создать чаты для новой команды
     const teamCat = member.guild.channels.find(c => c.name === 'Команды')
     createChannelIfNotExist(user.teamCode, { type: 'text', parent: teamCat }, member)
     roles.push(await createTeamRoleIfNotExist(user.teamCode, member))
   }
-  if (user.admin || user.mentor) {
+  if (user && (user.admin || user.mentor)) {
     roles.push(await createRoleIfNotExist(adminRole, member)) // TODO: добавить менторов
     // TODO: Менторов может быть много для каждого своя роль. Возможно это можно и не редачить, нужно уточнить
   }
