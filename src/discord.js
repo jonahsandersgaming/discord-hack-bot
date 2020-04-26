@@ -32,7 +32,7 @@ async function createTeamRoleIfNotExist (teamName, ctx) {
 }
 
 async function createRoleIfNotExist (role, { guild }) {
-  const currentRole = guild.roles.find(r => r.name === role.name)
+  const currentRole = guild.roles.cache.find(r => r.name === role.name)
   console.log(`Create role '${role.name}' ${currentRole && currentRole[0]} `)
   if (currentRole && currentRole[0]) {
     return currentRole[0]
