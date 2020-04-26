@@ -43,12 +43,12 @@ async function createCategory (name, { guild }) {
   return guild.channels.create(name, { type: 'category' })
 }
 
-async function createChat (name, { guild }) {
-  return guild.channels.create(name, { type: 'text' })
+async function createChat (name, opt, { guild }) {
+  return guild.channels.create(name, Object.assign(opt, { type: 'text' }))
 }
 
-async function createVoice (name, { guild }) {
-  return guild.channels.create(name, { type: 'voice' })
+async function createVoice (name, opt, { guild }) {
+  return guild.channels.create(name, Object.assign(opt, { type: 'voice' }))
 }
 
 async function createChannelIfNotExist (name, opt, { guild }) {
