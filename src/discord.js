@@ -111,6 +111,7 @@ client.on('guildMemberAdd', async member => {
   if (user && user.teamCode) {
     // TODO: создать чаты для новой команды
     console.dir(member.guild.channels)
+    console.dir(member.guild.channels.find)
     const teamCat = member.guild.channels.find(c => c.name === 'Команды')
     createChannelIfNotExist(user.teamCode, { type: 'text', parent: teamCat }, member)
     roles.push(await createTeamRoleIfNotExist(user.teamCode, member))
