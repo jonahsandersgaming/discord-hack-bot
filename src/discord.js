@@ -26,6 +26,7 @@ async function createTeamRoleIfNotExist (teamName, ctx) {
       name: teamName,
       hoist: false,
       mentionable: false
+
       // DOTO: каналы для этой роли должны быть скрыты
     }
   }, ctx)
@@ -92,20 +93,17 @@ client.on('message', async (message) => {
 })
 
 client.on('guildMemberAdd', async member => {
-  // {
+  console.log(`Wild ${member.user.username}   `)
+  // console.dir(member.user)
+
+  // Необходимые поля{
   //     admin: true,
   //     mentor: true,
   //     teamCode: 'change later',
   //     profile: {
   //       discord: 'kondr1#3020'
-  //     },
-  //     teamMatchmaking: {
-  //       enrollmentType: 'team'
   //     }
   //   }
-  console.log(`Wild ${member.user.username} appeard`)
-  console.dir(member.user)
-
   const user = await (await mongo()).getUserByDiscordId(`${member.user.username}#${member.user.discriminator}`) // TODO: наверное корректнее проверять по id
   const roles = []
 
