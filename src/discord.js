@@ -102,7 +102,7 @@ client.on('guildMemberAdd', async member => {
 
   const user = await (await mongo()).getUserByDiscordId(member.user.username) // TODO: наверное корректнее проверять по id
   const roles = []
-  if (user || (!user.admin && !user.mentor)) {
+  if (user && (!user.admin && !user.mentor)) {
     roles.push(await createRoleIfNotExist(memberRole, member)) // роль учасника
   }
   if (user && user.teamCode) {
