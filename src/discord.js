@@ -68,8 +68,8 @@ client.on('message', async (message) => {
   // TODO: сделать очищение дефолтных чатов
 
   // Создаем категории
-  const mainCat = await createCategory('Основной канал')
-  await createCategory('Команды')
+  const mainCat = await createCategory('Основной канал', message)
+  await createCategory('Команды', message)
 
   await createChat('Анонсы', {
     parent: mainCat
