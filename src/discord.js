@@ -62,9 +62,11 @@ async function createChannelIfNotExist (name, opt, { guild }) {
 client.on('message', async (message) => {
   console.log(`${message.content} ${message.guild.owner.user.username}`)
 
-  if (message.content.match(/^!init$/i) || message.guild.owner.id !== message.author.id) {
-    if (message.content.match(/^!init$/i)) { console.log('кто-то не владелец канала хочет выполнить !init') }
+  if (!message.content.match(/^!init$/i)) {
     return
+  }
+  if (message.content.match(/^!init$/i)) {
+    if (message.guild.owner.id !== message.author.id) { return console.log('кто-то не владелец канала хочет выполнить !init') }
   }
   // TODO: нужна проверка, что канал действительно нулевый
   // TODO: сделать очищение дефолтных чатов
