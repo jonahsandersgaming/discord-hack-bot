@@ -73,13 +73,13 @@ client.on('message', async (message) => {
 
   await createChat('Анонсы', {
     parent: mainCat
-  })
+  }, message)
   await createChat('Общий', {
     parent: mainCat
-  })
+  }, message)
   await createVoice('Бар', {
     parent: mainCat
-  })
+  }, message)
 })
 
 client.on('guildMemberAdd', async member => {
