@@ -53,16 +53,13 @@ async function createVoice (name, opt, { guild }) {
 }
 
 async function createChannelIfNotExist (name, opt, { guild }) {
-  const channel = guild.channels.cache.find(c => {
-    console.log(c.name == name)
-    console.log(`${c.name} ${name}`)
-    return c.name === name
-  }) // TODO: ещё стоит проверять по родителю канала
+  const channel = guild.channels.cache.find(c => c.name === name ) // TODO: ещё стоит проверять по родителю канала
+  // console.log(`${c.name} ${name} ${c.name === name}`)
   console.log(name)
   // console.dir(guild.channels.cache)
   console.dir(channel)
-  if (channel && channel[0]) {
-    return channel[0]
+  if (channel) {
+    return channel
   }
   return guild.channels.create(name, opt)
 }
