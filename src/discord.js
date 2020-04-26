@@ -99,7 +99,8 @@ client.on('guildMemberAdd', async member => {
   //     }
   //   }
   console.log(`Wild ${member.user.username} appeard`)
-  const user = mongo().getUserByDiscordId(member.user.username) // TODO: наверное корректнее проверять по id
+
+  const user = await (await mongo()).getUserByDiscordId(member.user.username) // TODO: наверное корректнее проверять по id
   const roles = []
   if (user || (!user.admin && !user.mentor)) {
     roles.push(await createRoleIfNotExist(memberRole, member)) // роль учасника
