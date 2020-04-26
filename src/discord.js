@@ -60,6 +60,8 @@ async function createChannelIfNotExist (name, opt, { guild }) {
 }
 
 client.on('message', async (message) => {
+  console.log(`${message.content} ${message.guild.owner.user.username}`)
+
   if (message.content.match(/^!init$/i) || message.guild.owner.id !== message.author.id) {
     if (message.content.match(/^!init$/i)) { console.log('кто-то не владелец канала хочет выполнить !init') }
     return
@@ -94,6 +96,7 @@ client.on('guildMemberAdd', async member => {
   //       enrollmentType: 'team'
   //     }
   //   }
+  console.log(`Wild ${member.user.username} appeard`)
   const user = mongo().getUserByDiscord(member.user.username)
   const roles = []
   if (user || (!user.admin && !user.mentor)) {
