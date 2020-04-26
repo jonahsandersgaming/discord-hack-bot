@@ -54,8 +54,8 @@ async function createVoice (name, opt, { guild }) {
 
 async function createChannelIfNotExist (name, opt, { guild }) {
   const channel = guild.channels.cache.find(c => {
-    // console.log(c.name == name)
-    // console.log(`${c.name} ${name}`)
+    console.log(c.name == name)
+    console.log(`${c.name} ${name}`)
     return c.name === name
   }) // TODO: ещё стоит проверять по родителю канала
   console.log(name)
