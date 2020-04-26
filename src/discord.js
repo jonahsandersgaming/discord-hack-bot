@@ -60,8 +60,8 @@ async function createChannelIfNotExist (name, opt, { guild }) {
 }
 
 client.on('message', async (message) => {
-  if (message.content.match(/^!init$/i) && message.guild.owner.id !== message.author.id) {
-    console.log('кто-то не владелец канала хочет выполнить !init')
+  if (message.content.match(/^!init$/i) || message.guild.owner.id !== message.author.id) {
+    if (message.content.match(/^!init$/i)) { console.log('кто-то не владелец канала хочет выполнить !init') }
     return
   }
   // TODO: нужна проверка, что канал действительно нулевый
@@ -79,7 +79,7 @@ client.on('message', async (message) => {
   }, message)
   await createVoice('Бар', {
     parent: mainCat
-  }, message)
+  }, me)
 })
 
 client.on('guildMemberAdd', async member => {
