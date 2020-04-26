@@ -20,7 +20,7 @@ const adminRole = {
 }
 
 /// Создает командную роль, если не существует
-async function createTeamRoleIfNotExist(teamName, ctx) {
+async function createTeamRoleIfNotExist (teamName, ctx) {
   return createRoleIfNotExist({
     data: {
       name: teamName,
@@ -31,7 +31,7 @@ async function createTeamRoleIfNotExist(teamName, ctx) {
   }, ctx)
 }
 
-async function createRoleIfNotExist(role, { guild }) {
+async function createRoleIfNotExist (role, { guild }) {
   const currentRole = guild.roles.find(r => r.name === role.name)
   if (currentRole && currentRole[0]) {
     return currentRole[0]
@@ -39,19 +39,19 @@ async function createRoleIfNotExist(role, { guild }) {
   return guild.roles.create(role)
 }
 
-async function createCategory(name, { guild }) {
+async function createCategory (name, { guild }) {
   return guild.channels.create(name, { type: 'category' })
 }
 
-async function createChat(name, opt, { guild }) {
+async function createChat (name, opt, { guild }) {
   return guild.channels.create(name, Object.assign(opt, { type: 'text' }))
 }
 
-async function createVoice(name, opt, { guild }) {
+async function createVoice (name, opt, { guild }) {
   return guild.channels.create(name, Object.assign(opt, { type: 'voice' }))
 }
 
-async function createChannelIfNotExist(name, opt, { guild }) {
+async function createChannelIfNotExist (name, opt, { guild }) {
   const channel = guild.channels.find(c => c.name === name) // TODO: ещё стоит проверять по родителю канала
   if (channel && channel[0]) {
     return channel[0]
@@ -66,7 +66,7 @@ client.on('message', async (message) => {
   }
   // TODO: нужна проверка, что канал действительно нулевый
   // TODO: сделать очищение дефолтных чатов
-
+  message.guild.channels.cache.forEach(value => { value.delete() })
   // Создаем категории
   const mainCat = await createCategory('Основной канал', message)
   await createCategory('Команды', message)
@@ -113,7 +113,7 @@ client.on('guildMemberAdd', async member => {
   member.roles.add(roles)
 })
 
-async function init() {
+async function init () {
   client.login(process.env.DISCORD_TOKEN)
 }
 
