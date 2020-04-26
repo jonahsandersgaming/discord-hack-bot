@@ -60,7 +60,7 @@ async function createChannelIfNotExist (name, opt, { guild }) {
 }
 
 client.on('message', async (message) => {
-  console.log(`${message.content} ${message.guild.owner.user.username}`)
+  console.log(`${message.guild.owner.user.username}: ${message.content} `)
 
   if (!message.content.match(/^!init$/i)) {
     return
@@ -99,7 +99,7 @@ client.on('guildMemberAdd', async member => {
   //     }
   //   }
   console.log(`Wild ${member.user.username} appeard`)
-  const user = mongo().getUserByDiscord(member.user.username)
+  const user = mongo().getUserByDiscordId(member.user.username) // TODO: наверное корректнее проверять по id
   const roles = []
   if (user || (!user.admin && !user.mentor)) {
     roles.push(await createRoleIfNotExist(memberRole, member)) // роль учасника
